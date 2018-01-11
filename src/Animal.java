@@ -16,15 +16,6 @@ public class Animal {
 		this.hasWings = hasWings;
 		this.numLegs = numLegs;
 	}
-	
-	/**
-	 * Pretend to speak
-	 * 
-	 * @return the animal's sound
-	 */
-	public String speak() {
-		return sound;
-	}
 
 	public String getSound() {
 		return sound;
