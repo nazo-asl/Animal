@@ -9,12 +9,22 @@ public class Animal {
 	String sound;
 	boolean hasWings;
 	int numLegs;
+	String name;
 	
-	public Animal(String sound, boolean hasWings, int numLegs) {
+	public Animal(String sound, boolean hasWings, int numLegs, String name) {
 		super();
 		this.sound = sound;
 		this.hasWings = hasWings;
 		this.numLegs = numLegs;
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSound() {
