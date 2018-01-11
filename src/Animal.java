@@ -19,6 +19,11 @@ public class Animal {
 		this.name = name;
 	}
 
+	/**
+	 * Returns the common name of the animal
+	 * 
+	 * @return the animal's name
+	 */
 	public String getName() {
 		return name;
 	}
