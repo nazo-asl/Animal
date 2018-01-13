@@ -4,7 +4,7 @@
  * @author kentc14
  *
  */
-public class Animal {
+public abstract class Animal {
 
 	String sound;
 	boolean hasWings;
