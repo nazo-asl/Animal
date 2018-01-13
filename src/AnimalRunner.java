@@ -4,8 +4,6 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.media.jfxmedia.logging.Logger;
-
 public class AnimalRunner {
 
 	public static void main(String[] args) {
