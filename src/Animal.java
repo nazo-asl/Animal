@@ -37,7 +37,14 @@ public abstract class Animal {
 	 * @return a string describing our sound
 	 */
 	public String makeSound() {
-		return this.toString() + " goes " + getSound();
+		return "The "+ this.getClass().getName() + " goes " + getSound();
+	}
+	
+	public String describe() {
+		String s = this.toString();
+		s+= " has "+getNumLegs()+" legs and ";
+		s+= hasWings()?"wings.":"no wings.";
+		return s;
 	}
 
 }
