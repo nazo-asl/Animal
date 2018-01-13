@@ -1,12 +1,23 @@
 
 public class Chicken extends Animal {
 
-	public Chicken(String sound, boolean hasWings, int numLegs, String name) {
-		super(sound, hasWings, numLegs, name);
+	public Chicken(String name) {
+		super(name);
 	}
-	
+
+	@Override
 	public String getSound() {
 		return "Squawk!";
+	}
+
+	@Override
+	public boolean hasWings() {
+		return true;
+	}
+
+	@Override
+	public int getNumLegs() {
+		return 2;
 	}
 
 }

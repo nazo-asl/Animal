@@ -1,26 +1,29 @@
 /***
- * Represents the concept of an animal.
- * 
- * @author kentc14
+ * Represents an animal.
  *
  */
 public abstract class Animal {
 
-	String sound;
-	boolean hasWings;
-	int numLegs;
-	String name;
-	
-	public Animal(String sound, boolean hasWings, int numLegs, String name) {
+	private String name;
+
+	public Animal(String name) {
 		super();
-		this.sound = sound;
-		this.hasWings = hasWings;
-		this.numLegs = numLegs;
 		this.name = name;
 	}
 
+	public abstract String getSound();
+
+	public abstract boolean hasWings();
+
+	public abstract int getNumLegs();
+
+	@Override
+	public String toString() {
+		return getName() + " the " + this.getClass().getName();
+	}
+
 	/**
-	 * Returns the common name of the animal
+	 * Returns the given name of the animal
 	 * 
 	 * @return the animal's name
 	 */
@@ -28,31 +31,13 @@ public abstract class Animal {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * Print a descriptive string and the sound this animal makes.
+	 * 
+	 * @return a string describing our sound
+	 */
+	public String makeSound() {
+		return this.toString() + " goes " + getSound();
 	}
 
-	public String getSound() {
-		return sound;
-	}
-
-	public void setSound(String sound) {
-		this.sound = sound;
-	}
-
-	public boolean isHasWings() {
-		return hasWings;
-	}
-
-	public void setHasWings(boolean hasWings) {
-		this.hasWings = hasWings;
-	}
-
-	public int getNumLegs() {
-		return numLegs;
-	}
-
-	public void setNumLegs(int numLegs) {
-		this.numLegs = numLegs;
-	}
 }
