@@ -26,15 +26,30 @@ public class AnimalRunner {
 	public static void main(String[] args) {
 		// an empty array list of type Animal
 		List<Animal> animals = new ArrayList<Animal>();
-		
+
 		List<Class<? extends Animal>> classList = collectAnimalClasses();
 		for (Class<? extends Animal> c : classList) {
 			animals.add(createAnimalOfClass(c));
 		}
-		System.out.println("The menagerie consists of: ");
+		System.out.println("Who do we have?");
+		for (Animal a : animals) {
+			System.out.println(a);
+		}
+		System.out.println("\nHow do we sound?");
 		for (Animal a : animals) {
 			System.out.println(a.makeSound());
 		}
+		System.out.println("\nHow do we look?");
+		for (Animal a : animals) {
+			System.out.println(a.describe());
+		}
+		System.out.println("\nWho is a dog?");
+		for (Animal a : animals) {
+			if (a instanceof Dog) {
+				System.out.println(a+" is a Dog.");
+			}
+		}
+
 	}
 
 	/**
