@@ -43,6 +43,12 @@ public class AnimalRunner {
 		for (Animal a : animals) {
 			System.out.println(a.describe());
 		}
+		System.out.println("\nWho is a dog?");
+		for (Animal a : animals) {
+			if (a instanceof Dog) {
+				System.out.println(a+" is a Dog.");
+			}
+		}
 
 	}
 
