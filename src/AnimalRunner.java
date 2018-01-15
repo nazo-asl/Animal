@@ -1,8 +1,6 @@
-
 /***
- * Creates an instance of Animal subtypes and calls methods on them to demonstrate 
- * polymorphism applied through inheritance.
- * 
+ * Creates instances of Animal subtypes and calls their methods
+ * to demonstrate polymorphism achieved through inheritance.
  * 
  **/
 import java.io.File;
@@ -20,48 +18,79 @@ import java.util.stream.Collectors;
 
 public class AnimalRunner {
 
-	// a mapping of letters to lists of names starting with those letters
-	private static Map<String, List<String>> names = initializeNamesMap();
-
 	public static void main(String[] args) {
 		// an empty array list of type Animal
 		List<Animal> animals = new ArrayList<Animal>();
 
 		List<Class<? extends Animal>> classList = collectAnimalClasses();
+		
 		for (Class<? extends Animal> c : classList) {
-			animals.add(createAnimalOfClass(c));
+			Animal a = createAnimalOfClass(c);// creates a randomly named instance
+			animals.add(a); 
 		}
+		
 		System.out.println("Who do we have?");
 		for (Animal a : animals) {
 			System.out.println(a);
 		}
+		
 		System.out.println("\nHow do we sound?");
 		for (Animal a : animals) {
 			System.out.println(a.makeSound());
 		}
+		
 		System.out.println("\nHow do we look?");
 		for (Animal a : animals) {
 			System.out.println(a.describe());
 		}
-		System.out.println("\nWho is a dog?");
+		
+		System.out.println("\nWhich of the animals are dogs?");
 		for (Animal a : animals) {
 			if (a instanceof Dog) {
 				System.out.println(a+" is a Dog.");
 			}
 		}
-
+	}
+	
+	/**
+	 * Collects from the working directory all files that extend Animal
+	 * 
+	 * @return a list holding all classes that extend Animal
+	 * @throws ClassNotFoundException
+	 *             if the requested class is not found
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static List<Class<? extends Animal>> collectAnimalClasses() {
+		List<Class<? extends Animal>> animals = new ArrayList<Class<? extends Animal>>();
+		File[] classes = findClassFilesInPackage();
+		for (File f : classes) {
+			String nameWithExtension = f.getName();
+			int idx = nameWithExtension.lastIndexOf(".class");
+			String searchString = nameWithExtension.substring(0,
+					idx);
+			Class classObj;
+			try {
+				classObj = Class.forName(searchString);
+				if (Animal.class.isAssignableFrom(classObj)
+						&& !Modifier.isAbstract(
+								classObj.getModifiers())) {
+					animals.add(classObj);
+				}
+			} catch (ClassNotFoundException e) {
+				System.out.println(
+						"Error getting class from file " + f);
+			}
+		}
+		return animals;
 	}
 
 	/**
-	 * Attempts to return a reference to an instance of a class extending Animal. A
-	 * random name is selected from the name database having the same first
-	 * character as the name of the class provided. The random name is used as an
-	 * argument during instantiation. If no suitable constructor is found, an error
-	 * is thrown.
+	 * Constructs a randomly named instance of the parameter type.
+	 * If no suitable constructor is found, returns null.
 	 * 
 	 * @param c
 	 *            a class that extends Animal
-	 * @return a new instance of the class provided
+	 * @return a new instance of the class specified; or null
 	 */
 	private static Animal createAnimalOfClass(
 			Class<? extends Animal> c) {
@@ -111,41 +140,7 @@ public class AnimalRunner {
 		return null;
 	}
 
-	/**
-	 * Collects from the working directory all files that extend Animal
-	 * 
-	 * @return a list holding all classes that extend Animal
-	 * @throws ClassNotFoundException
-	 *             if the requested class is not found
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static List<Class<? extends Animal>> collectAnimalClasses() {
-		List<Class<? extends Animal>> animals = new ArrayList<Class<? extends Animal>>();
-		File[] classes = findClassFilesInPackage();
-		for (File f : classes) {
-			String nameWithExtension = f.getName();
-			int idx = nameWithExtension.lastIndexOf(".class");
-			String searchString = nameWithExtension.substring(0,
-					idx);
-			Class classObj;
-			try {
-				classObj = Class.forName(searchString);
-				if (Animal.class.isAssignableFrom(classObj)
-						&& !Modifier.isAbstract(
-								classObj.getModifiers())) {
-					animals.add(classObj);
-				}
-			} catch (ClassNotFoundException e) {
-				System.out.println(
-						"Error getting class from file " + f);
-			}
-		}
-		return animals;
-	}
-
-	/**
-	 * Looks inside the current working directory and collects all file names having
-	 * the extension .class
+	/** Collects all files with the extension .class inside the working directory
 	 * 
 	 * @return an array of files
 	 */
@@ -160,4 +155,6 @@ public class AnimalRunner {
 		return files;
 	}
 
+	// a mapping of letters to lists of names starting with those letters
+	private static Map<String, List<String>> names = initializeNamesMap();
 }
