@@ -8,7 +8,7 @@ public class Kangeroo extends Animal {
 
 	@Override
 	public String getSound() {
-		// TODO Auto-generated method stub
+		return "harrrrwwwww";
 		return null;
 	}
 
