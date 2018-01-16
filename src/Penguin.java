@@ -9,19 +9,19 @@ public class Penguin extends Animal {
 	@Override
 	public String getSound() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Hrrrrrrrrrr";
 	}
 
 	@Override
 	public boolean hasWings() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public int getNumLegs() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 }
