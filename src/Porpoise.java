@@ -1,8 +1,8 @@
 
 public class Porpoise extends Animal {
 
-	public Porpoise(String name) {
-		super(name);
+	public Porpoise(String animalName) {
+		super(animalName);
 	}
 
 	@Override
