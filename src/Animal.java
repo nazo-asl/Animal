@@ -22,24 +22,23 @@ public abstract class Animal {
 		return getName() + " the " + this.getClass().getName();
 	}
 
-	/**
-	 * Returns the given name of the animal
-	 * 
+	/** Returns the given name of the animal
 	 * @return the animal's name
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Print a descriptive string and the sound this animal makes.
-	 * 
-	 * @return a string describing our sound
+	/** Builds a string containing the animal's sound.
+	 * @return a string describing the sound
 	 */
 	public String makeSound() {
 		return "The "+ this.getClass().getName() + " goes " + getSound();
 	}
 	
+	/** Completely describe the animal
+	 * @return a string describing the animal
+	 */
 	public String describe() {
 		String s = this.toString();
 		s+= " has "+getNumLegs()+" legs and ";
